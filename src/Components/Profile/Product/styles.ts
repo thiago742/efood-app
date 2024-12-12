@@ -6,11 +6,15 @@ export const Li = styled.li`
   margin-bottom: 48px;
   position: relative;
   padding-bottom: 12px;
+  max-height: 500px;
 
   img {
     width: 95%;
     display: block;
     margin: 8px auto;
+    height: 167px;
+    object-fit: cover;
+    padding-top: 8px;
   }
 
   h3 {
@@ -79,6 +83,12 @@ export const ModalTitle = styled.h2`
 export const ModalDescription = styled.p`
   font-size: 14px;
   color: #fff;
+  margin-bottom: 16px;
+`
+
+export const ModalPorcao = styled.p`
+  color: #fff;
+  font-size: 14px;
   margin-bottom: 16px;
 `
 

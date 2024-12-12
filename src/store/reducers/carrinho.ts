@@ -1,8 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import FoodProf from '../../models/FoodProf'
+
+type ItemCarrinho = {
+  id: number
+  titulo: string
+  preco: number
+  quantidade: number
+  image: string
+}
 
 type CarrinhoState = {
-  itens: FoodProf[]
+  itens: ItemCarrinho[]
 }
 
 const initialState: CarrinhoState = {
@@ -13,23 +20,37 @@ const carrinhoSlice = createSlice({
   name: 'carrinho',
   initialState,
   reducers: {
-    adicionar: (state, action: PayloadAction<Omit<FoodProf, 'quantidade'>>) => {
+    adicionar: (state, action: PayloadAction<ItemCarrinho>) => {
       const comida = action.payload
       const itemExistente = state.itens.find((item) => item.id === comida.id)
 
       if (itemExistente) {
-        itemExistente.quantidade += 1
+        itemExistente.quantidade += comida.quantidade
       } else {
-        state.itens.push({ ...comida, quantidade: 1 })
+        state.itens.push(comida)
       }
     },
 
     remover: (state, action: PayloadAction<number>) => {
       const id = action.payload
       state.itens = state.itens.filter((item) => item.id !== id)
+    },
+
+    atualizarQuantidade: (
+      state,
+      action: PayloadAction<{ id: number; quantidade: number }>
+    ) => {
+      const { id, quantidade } = action.payload
+      const itemExistente = state.itens.find((item) => item.id === id)
+
+      if (itemExistente && quantidade > 0) {
+        itemExistente.quantidade = quantidade
+      } else if (itemExistente && quantidade === 0) {
+        state.itens = state.itens.filter((item) => item.id !== id)
+      }
     }
   }
 })
 
-export const { adicionar, remover } = carrinhoSlice.actions
+export const { adicionar, remover, atualizarQuantidade } = carrinhoSlice.actions
 export default carrinhoSlice.reducer

@@ -1,12 +1,22 @@
 import { Container } from './styles'
-import bgbanner from '../../../assets/imagem_de_fundo.png'
 
-const Banner = () => (
-  <Container style={{ backgroundImage: `url(${bgbanner})` }}>
-    <h2>Italiana</h2>
-    <h2>
-      <b>La Dolce Vita Trattoria</b>
-    </h2>
+type BannerProps = {
+  capa: string
+  titulo: string
+  tipo: string
+}
+
+const Banner = ({ capa, titulo, tipo }: BannerProps) => (
+  <Container
+    style={{
+      backgroundImage: `url(${capa})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center'
+    }}
+  >
+    <p>{tipo}</p>
+    <h2>{titulo}</h2>
   </Container>
 )
 

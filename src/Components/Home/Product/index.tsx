@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom'
-import { Button, Desc, Infos, Li, NomeNota, Nota } from './styles'
+import { Button, Desc, Infos, Li, NomeNota, Nota, RestImg } from './styles'
+import star from '../../../assets/estrela.png'
 
-export type Props = {
+type Props = {
+  id: number
   titulo: string
   image: string
   nota: number
   descricao: string
   infos: string[]
-  star: string
 }
 
-const Product = ({ descricao, image, infos, nota, titulo, star }: Props) => (
+const Product = ({ descricao, image, infos, nota, titulo, id }: Props) => (
   <Li>
-    <img src={image} />
+    <RestImg src={image} />
     <Infos>
       {infos.map((info) => (
         <div key={info}>{info}</div>
@@ -26,7 +27,7 @@ const Product = ({ descricao, image, infos, nota, titulo, star }: Props) => (
       </Nota>
     </NomeNota>
     <Desc>{descricao}</Desc>
-    <Link to="/profile">
+    <Link to={`/${id}`}>
       <Button>Saiba mais</Button>
     </Link>
   </Li>

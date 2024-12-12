@@ -6,10 +6,16 @@ export const Li = styled.li`
   margin-bottom: 48px;
   position: relative;
   padding-bottom: 12px;
+  max-height: 450px;
 
   img {
     width: 100%;
   }
+`
+
+export const RestImg = styled.img`
+  height: 220px;
+  object-fit: cover;
 `
 
 export const Infos = styled.div`

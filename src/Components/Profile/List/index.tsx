@@ -1,23 +1,21 @@
-import ProfileProduct from '../Product'
-import FoodProf from '../../../models/FoodProf'
+import { Props } from '../../Home/List'
+import Product from '../Product'
 import { Container, FoodList } from './styles'
-
-type Props = {
-  foods: FoodProf[]
-}
 
 const List = ({ foods = [] }: Props) => (
   <Container>
     <FoodList>
       {foods.map((food) => (
-        <ProfileProduct
-          key={food.id}
-          id={food.id}
-          image={food.image}
-          descricao={food.descricao}
-          titulo={food.titulo}
-          preco={food.preco}
-        />
+        <li key={food.id}>
+          <Product
+            image={food.foto}
+            titulo={food.nome}
+            descricao={food.descricao}
+            preco={food.preco}
+            id={food.id}
+            porcao={food.porcao}
+          />
+        </li>
       ))}
     </FoodList>
   </Container>

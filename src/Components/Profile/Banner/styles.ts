@@ -9,7 +9,16 @@ export const Container = styled.div`
 
   h2 {
     color: #fff;
-    font-weight: 100;
+    font-weight: 900;
     font-size: 32px;
+  }
+
+  p {
+    color: #fff;
+    font-size: 24px;
+  }
+
+  img {
+    object-fit: cover;
   }
 `

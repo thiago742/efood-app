@@ -8,24 +8,33 @@ import {
   ModalTitle,
   ModalDescription,
   ModalImage,
-  ModalButton
+  ModalButton,
+  ModalPorcao
 } from './styles'
 import Modal from 'react-modal'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { adicionar } from '../../../store/reducers/carrinho'
 
-export type Props = {
-  id: number
-  titulo: string
-  image: string
-  descricao: string
-  preco: number
-}
-
 Modal.setAppElement('#root')
 
-const Product = ({ id, descricao, image, titulo, preco }: Props) => {
+type ProductProps = {
+  image: string
+  titulo: string
+  descricao: string
+  porcao: string
+  preco: number
+  id: number
+}
+
+const Product = ({
+  image,
+  titulo,
+  descricao,
+  porcao,
+  preco,
+  id
+}: ProductProps) => {
   const [modalIsOpen, setIsOpen] = useState(false)
   const dispatch = useDispatch()
 
@@ -37,16 +46,33 @@ const Product = ({ id, descricao, image, titulo, preco }: Props) => {
     setIsOpen(false)
   }
 
+  console.log('Imagem URL:', image)
+
   const adicionarAoCarrinho = () => {
-    dispatch(adicionar({ id, titulo, image, descricao, preco }))
+    dispatch(
+      adicionar({
+        id,
+        titulo,
+        preco,
+        quantidade: 1,
+        image
+      })
+    )
     closeModal()
+  }
+
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 150) {
+      return descricao.slice(0, 150) + '...'
+    }
+    return descricao
   }
 
   return (
     <Li>
       <img src={image} alt={titulo} />
       <h3>{titulo}</h3>
-      <Desc>{descricao}</Desc>
+      <Desc>{getDescricao(descricao)}</Desc>
       <Button onClick={openModal}>Adicionar ao carrinho</Button>
 
       <Modal
@@ -61,21 +87,8 @@ const Product = ({ id, descricao, image, titulo, preco }: Props) => {
               <ModalImage src={image} alt={titulo} />
               <div>
                 <ModalTitle>{titulo}</ModalTitle>
-                <ModalDescription>
-                  A pizza Margherita é uma pizza clássica da culinária italiana,
-                  reconhecida por sua simplicidade e sabor inigualável. Ela é
-                  feita com uma base de massa fina e crocante, coberta com molho
-                  de tomate fresco, queijo mussarela de alta qualidade,
-                  manjericão fresco e azeite de oliva extra-virgem. A combinação
-                  de sabores é perfeita, com o molho de tomate suculento e
-                  ligeiramente ácido, o queijo derretido e cremoso e as folhas
-                  de manjericão frescas, que adicionam um toque de sabor
-                  herbáceo. É uma pizza simples, mas deliciosa, que agrada a
-                  todos os paladares e é uma ótima opção para qualquer ocasião.
-                  <br />
-                  <br />
-                  Serve: de 2 a 3 pessoas
-                </ModalDescription>
+                <ModalDescription>{descricao}</ModalDescription>
+                <ModalPorcao>Serve: de {porcao}</ModalPorcao>
                 <ModalButton onClick={adicionarAoCarrinho}>
                   Adicionar ao carrinho - R${preco.toFixed(2)}
                 </ModalButton>

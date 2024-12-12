@@ -1,75 +1,57 @@
-import FoodProf from '../../models/FoodProf'
-
+import { useEffect, useState } from 'react'
 import Footer from '../../Components/Footer'
 import Header from '../../Components/Profile/Header'
 import List from '../../Components/Profile/List'
 import Banner from '../../Components/Profile/Banner'
-import pizza from '../../assets/image 3.png'
+import { useParams } from 'react-router-dom'
 
-const pratos: FoodProf[] = [
-  {
-    titulo: 'Pizza Marguerita',
-    descricao:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 1,
-    image: pizza,
-    quantidade: 0,
-    preco: 60.9
-  },
-  {
-    titulo: 'Pizza Marguerita',
-    descricao:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 2,
-    image: pizza,
-    quantidade: 0,
-    preco: 60.9
-  },
-  {
-    titulo: 'Pizza Marguerita',
-    descricao:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 3,
-    image: pizza,
-    quantidade: 0,
-    preco: 60.9
-  },
-  {
-    titulo: 'Pizza Marguerita',
-    descricao:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 4,
-    image: pizza,
-    quantidade: 0,
-    preco: 60.9
-  },
-  {
-    titulo: 'Pizza Marguerita',
-    descricao:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 5,
-    image: pizza,
-    quantidade: 0,
-    preco: 60.9
-  },
-  {
-    titulo: 'Pizza Marguerita',
-    descricao:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 6,
-    image: pizza,
-    quantidade: 0,
-    preco: 60.9
+const Perfil = () => {
+  const { id } = useParams()
+  const [restaurante, setRestaurante] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (!id) {
+      console.error('ID não encontrado na URL')
+      setLoading(false)
+      return
+    }
+
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setRestaurante(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error('Erro ao buscar restaurante:', err)
+        setLoading(false)
+      })
+  }, [id])
+
+  if (loading) {
+    return <div>Carregando...</div>
   }
-]
 
-const Perfil = () => (
-  <>
-    <Header />
-    <Banner />
-    <List foods={pratos} />
-    <Footer />
-  </>
-)
+  if (!restaurante) {
+    return <div>Restaurante não encontrado</div>
+  }
+
+  console.log(restaurante)
+
+  return (
+    <>
+      <Header />
+      <Banner
+        capa={restaurante.capa}
+        titulo={restaurante.titulo}
+        tipo={restaurante.tipo}
+      />
+      <List foods={restaurante.cardapio} />
+      <Footer />
+    </>
+  )
+}
 
 export default Perfil
