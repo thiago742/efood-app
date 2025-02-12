@@ -32,7 +32,7 @@ export const Desc = styled.p`
 
 export const Button = styled.button`
   display: block;
-  background-color: #fff;
+  background-color: #ffebd9;
   color: #e66767;
   padding: 8px 6px;
   margin: 0px auto;
@@ -110,9 +110,9 @@ export const ModalX = styled.img`
 `
 
 export const ModalButton = styled.button`
-  background-color: #fff;
+  background-color: #ffebd9;
   color: #e66767;
-  padding: 10px 20px;
+  padding: 4px 6px;
   width: 40%;
   border: none;
   font-weight: bold;
