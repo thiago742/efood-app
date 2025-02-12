@@ -50,22 +50,36 @@ export const ModalContent = styled.div`
 `
 
 export const ModalList = styled.ul`
+  padding: 16px;
   li {
     display: flex;
     background-color: #ffebd9;
-    margin: 16px 8px;
     align-items: center;
     color: #e66767;
-  }
+    height: 100px;
+    width: 100%;
+    margin-top: 16px;
+    padding: 8px;
+    position: relative;
+    }
 
   h4 {
-    margin-left: 24px;
+    font-size: 18px;
   }
 
-  div {
+  p {
+    font-size: 16px;
+  }
+
+  .nomeValue {
+    display: block;
+  }
+
+  .splitValue {
     display: flex;
     justify-content: space-between;
-    padding: 8px;
+    padding: 8px; 20px;
+    font-size: 14px;
   }
 
   h3 {
@@ -76,7 +90,7 @@ export const ModalList = styled.ul`
 
 export const Form = styled.form`
   padding: 16px;
-  width: 360px;
+  max-width: 360px;
 
   div {
     width: 100%;
@@ -90,19 +104,20 @@ export const Form = styled.form`
     margin-bottom: 16px;
     color: #fff;
     font-weight: bold;
+    font-size: 16px;
   }
 `
 
 export const Button = styled.button`
   display: block;
   margin: 0 auto;
-  width: 95%;
-  padding: 8px;
+  height: 24px;
+  width: 100%;
   border: none;
   background-color: #ffebd9;
   color: #e66767;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
   margin-top: 16px;
   cursor: pointer;
 `
@@ -127,12 +142,17 @@ export const Input = styled.input`
 
 export const PedidoImage = styled.img`
   height: 80px;
-  padding: 8px;
+  width: 80px;
+  padding: 8px 8px 12px 8px;
 `
 
 export const Lixo = styled.img`
-  height: 30px;
-  width: 30px;
+  height: 16px;
+  width: 16px;
+  margin: 8px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `
 
 export const EmptyCartMessage = styled.p`
@@ -148,9 +168,12 @@ export const ContainerMsg = styled.div`
 
   h2 {
     margin-bottom: 16px;
+    font-size: 16px;
   }
 
   p {
     margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 400;
   }
 `

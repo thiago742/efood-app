@@ -9,12 +9,14 @@ import {
   ModalDescription,
   ModalImage,
   ModalButton,
-  ModalPorcao
+  ModalPorcao,
+  ModalX
 } from './styles'
 import Modal from 'react-modal'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { adicionar } from '../../../store/reducers/carrinho'
+import xis from '../../../assets/xis.png'
 
 Modal.setAppElement('#root')
 
@@ -81,11 +83,12 @@ const Product = ({
         className="modal-content"
         overlayClassName="modal-overlay"
       >
-        <ModalOverlay>
+        <ModalOverlay onClick={closeModal}>
           <ModalContent>
             <ModalContainer>
               <ModalImage src={image} alt={titulo} />
               <div>
+                <ModalX onClick={closeModal} src={xis} alt="fechar prato" />
                 <ModalTitle>{titulo}</ModalTitle>
                 <ModalDescription>{descricao}</ModalDescription>
                 <ModalPorcao>Serve: de {porcao}</ModalPorcao>

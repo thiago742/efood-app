@@ -59,7 +59,6 @@ export const ModalOverlay = styled.div`
 export const ModalContent = styled.div`
   background: #e66767;
   padding: 20px;
-  border-radius: 10px;
   width: 80%;
   height: 344px;
   max-width: 1024px;
@@ -72,6 +71,7 @@ export const ModalContainer = styled.div`
   display: flex;
   gap: 15px;
   align-items: center;
+  position: relative;
 `
 
 export const ModalTitle = styled.h2`
@@ -83,7 +83,7 @@ export const ModalTitle = styled.h2`
 export const ModalDescription = styled.p`
   font-size: 14px;
   color: #fff;
-  margin-bottom: 16px;
+  margin: 40px 0;
 `
 
 export const ModalPorcao = styled.p`
@@ -93,10 +93,20 @@ export const ModalPorcao = styled.p`
 `
 
 export const ModalImage = styled.img`
-  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
   width: 280px;
+  height: 280px;
+  object-fit: cover;
+`
+
+export const ModalX = styled.img`
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 `
 
 export const ModalButton = styled.button`
@@ -105,7 +115,6 @@ export const ModalButton = styled.button`
   padding: 10px 20px;
   width: 40%;
   border: none;
-  border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
 `

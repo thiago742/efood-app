@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Header from '../../Components/Home/Header'
 import Footer from '../../Components/Footer'
 import HomeList from '../../Components/Home/List'
-
 export type Food = {
   foto: string
   porcao: string
