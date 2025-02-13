@@ -92,7 +92,7 @@ const Header = () => {
           overlayClassName="modal-overlay"
           contentLabel="Modal"
         >
-          <ModalOverlay onClick={closeModal}>
+          <ModalOverlay>
             <ModalContent>
               {currentModal === 1 && (
                 <ModalList>
