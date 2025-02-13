@@ -18,7 +18,7 @@ import {
 } from './styles'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { remover } from '../../../store/reducers/carrinho'
+import { limparCarrinho, remover } from '../../../store/reducers/carrinho'
 import { RootReducer } from '../../../store'
 import Modal from 'react-modal'
 import { PurchasePayload, usePurchaseMutation } from '../../../services/api'
@@ -45,6 +45,23 @@ const Header = () => {
     year: '',
     cvv: ''
   })
+
+  const limpaForm = () => {
+    setFormData({
+      name: '',
+      end: '',
+      cidade: '',
+      cep: '',
+      numero: '',
+      complemento: '',
+      nameCardOwner: '',
+      nameCard: '',
+      cardNumber: '',
+      month: '',
+      year: '',
+      cvv: ''
+    })
+  }
 
   const totalDeItens = useSelector((state: RootReducer) =>
     state.carrinho.itens.reduce((total, item) => total + item.quantidade, 0)
@@ -355,7 +372,15 @@ const Header = () => {
                     Esperamos que desfrute de uma deliciosa e agradável
                     experiência gastronômica. Bom apetite!
                   </p>
-                  <Button onClick={() => closeModal()}>Concluir</Button>
+                  <Button
+                    onClick={() => {
+                      dispatch(limparCarrinho())
+                      closeModal()
+                      limpaForm()
+                    }}
+                  >
+                    Concluir
+                  </Button>
                 </ContainerMsg>
               )}
 

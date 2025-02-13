@@ -48,9 +48,14 @@ const carrinhoSlice = createSlice({
       } else if (itemExistente && quantidade === 0) {
         state.itens = state.itens.filter((item) => item.id !== id)
       }
+    },
+
+    limparCarrinho: (state) => {
+      state.itens = []
     }
   }
 })
 
-export const { adicionar, remover, atualizarQuantidade } = carrinhoSlice.actions
+export const { adicionar, remover, atualizarQuantidade, limparCarrinho } =
+  carrinhoSlice.actions
 export default carrinhoSlice.reducer
